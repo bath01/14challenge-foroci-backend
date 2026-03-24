@@ -31,6 +31,7 @@ RUN npm ci --omit=dev && npm cache clean --force
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 COPY prisma.config.ts ./
+RUN npx prisma generate
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
